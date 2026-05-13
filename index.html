@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UniFi Installer in Michigan | Wolverine Low Voltage</title>
+  <meta name="description" content="Licensed Michigan UniFi installer for business WiFi, network switches, security cameras, and door access. Design, install, and support across Detroit, Ann Arbor & beyond." />
+  <link rel="canonical" href="https://wolverinelowvoltage.com/unifi/" />
+
+  <meta property="og:title" content="UniFi Installer in Michigan | Wolverine Low Voltage" />
+  <meta property="og:description" content="Licensed Michigan UniFi installer. Design, install, and support across the state." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wolverinelowvoltage.com/unifi/" />
+  <meta property="og:image" content="https://wolverinelowvoltage.com/unifi/assets/og-image.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JSON-LD: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "name": "Wolverine Low Voltage",
+    "image": "https://wolverinelowvoltage.com/unifi/assets/og-image.jpg",
+    "url": "https://wolverinelowvoltage.com/unifi/",
+    "telephone": "+1-313-899-5420",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "25526 Goddard Rd",
+      "addressLocality": "Taylor",
+      "addressRegion": "MI",
+      "postalCode": "48180",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Michigan"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/wolverinelowvoltage",
+      "https://www.linkedin.com/company/wolverine-low-voltage"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "UniFi Network Installation",
+    "provider": { "@type": "Electrician", "name": "Wolverine Low Voltage" },
+    "areaServed": { "@type": "State", "name": "Michigan" },
+    "description": "Design, installation, and support of Ubiquiti UniFi networks, cameras, and door access for Michigan businesses."
+  }
+  </script>
+
+  <!-- JSON-LD: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wolverinelowvoltage.com/" },
+      { "@type": "ListItem", "position": 2, "name": "UniFi", "item": "https://wolverinelowvoltage.com/unifi/" }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is WLV a licensed UniFi installer in Michigan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Wolverine Low Voltage is a licensed Michigan low-voltage contractor and an authorized UniFi/Ubiquiti professional integrator. We design, install, and support UniFi systems across the state — from a single AP to multi-site deployments." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a UniFi installation cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Pricing depends on site size, cabling, and which UniFi product lines you need (WiFi, cameras, door access). Most small-office WiFi refreshes start around $4–8K installed; multi-camera Protect deployments run higher. We always provide a line-item proposal — no surprises." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can UniFi replace my Meraki or Cisco network?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In most small-to-mid business environments, yes — and you eliminate recurring license fees in the process. We give an honest assessment first: if your environment is better served by Meraki or Cisco (very large enterprise, specific SLA needs), we'll tell you." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does UniFi work for multi-tenant buildings?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. UniFi supports VLAN-per-tenant, isolated WiFi networks per unit, and per-tenant billing/usage reporting. We've deployed it in mixed-use buildings, apartment complexes, and shared office spaces across Michigan." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between WiFi 6, 6E, and WiFi 7?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WiFi 6 (802.11ax) is the modern baseline — fast, efficient, great range. WiFi 6E adds the 6 GHz band for less interference. WiFi 7 adds Multi-Link Operation and wider channels for very high throughput. For most offices, WiFi 6 or 6E hits the sweet spot today; WiFi 7 makes sense for high-density or future-proofing." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will UniFi cameras work outside in Michigan winters?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. UniFi Protect outdoor cameras (G6 Bullet, G6 Pro, AI Pro) are IP66/IP67 rated and operate well below freezing. We mount them with proper conduit and weatherproofing for Michigan conditions, and we factor cold-weather PoE budget into the design." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can UniFi Access integrate with UniFi cameras?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — that integration is one of the biggest reasons people choose the platform. A door unlock event can pull up the camera footage from that door automatically, all from the same dashboard, with no per-door monthly fee." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer ongoing managed support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Through our managed services partner Dark Blue Technologies (DBT), we offer 24/7 monitoring, firmware management, and incident response. Most clients pair installation with a managed agreement so they never have to think about the network again." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============ HEADER / NAV ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Wolverine Low Voltage home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+            <rect width="40" height="40" rx="8" fill="#fecc07"/>
+            <path d="M10 12l5 16 5-10 5 10 5-16" stroke="#0d0d0d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Wolverine</strong>
+          <span>Low Voltage</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/unifi/" class="is-current" aria-current="page">UniFi</a></li>
+          <li><a href="/service-areas/">Service Areas</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+        <a href="tel:+13138995420" class="btn btn-phone">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (313) 899-5420
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ BREADCRUMBS ============ -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-current="page">UniFi</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ============ SECTION 1 — HERO ============ -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">UniFi by Ubiquiti — Michigan</span>
+        <h1>Michigan's UniFi Installer for <span class="hl">Business Networks</span>, <span class="hl">Cameras</span> &amp; <span class="hl">Access Control</span></h1>
+        <p class="lead">Wolverine Low Voltage designs, installs, and supports UniFi systems for Michigan businesses — from a single access point in a startup office to a 100-camera campus deployment. Licensed low-voltage contractor based in Taylor, serving the entire state.</p>
+        <div class="hero-ctas">
+          <a href="#final-cta" class="btn btn-primary btn-lg">Get a UniFi Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:+13138995420" class="btn btn-outline btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call (313) 899-5420
+          </a>
+        </div>
+        <ul class="trust-strip" role="list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Licensed Michigan Low-Voltage Contractor
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Based in Taylor, MI
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Serving Michigan since 2014
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-art-card hero-art-card--main">
+          <div class="hero-art-rack">
+            <div class="rack-unit"></div>
+            <div class="rack-unit rack-unit--lit"></div>
+            <div class="rack-unit"></div>
+            <div class="rack-unit rack-unit--lit"></div>
+            <div class="rack-unit rack-unit--switch">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="rack-unit rack-unit--switch">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="rack-unit"></div>
+            <div class="rack-unit rack-unit--lit"></div>
+          </div>
+          <span class="hero-art-tag">UDM Pro + Pro Max 24 PoE</span>
+        </div>
+        <div class="hero-art-card hero-art-card--ap">
+          <div class="ap-disc">
+            <span class="ap-led"></span>
+          </div>
+          <span class="hero-art-tag">U7 Pro · WiFi 7</span>
+        </div>
+        <div class="hero-art-card hero-art-card--cam">
+          <div class="cam">
+            <div class="cam-body"></div>
+            <div class="cam-lens"></div>
+          </div>
+          <span class="hero-art-tag">G6 Bullet · Protect AI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2 — WHAT IS UNIFI? ============ -->
+  <section class="explainer">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow eyebrow-dark">The basics</span>
+        <h2>What is UniFi?</h2>
+        <p class="section-lead">UniFi is the unified business network platform from Ubiquiti. It runs your WiFi, network switches, security cameras, door access, and even your phone system from a single dashboard — without the recurring per-device licensing fees of platforms like Meraki or Verkada. Once installed, your hardware keeps working forever, even if the internet goes down.</p>
+      </div>
+
+      <ul class="replaces-grid" role="list">
+        <li class="replaces-card">
+          <div class="replaces-icon">
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="10" width="36" height="22" rx="3"/><path d="M14 22h20M14 26h12"/><circle cx="38" cy="20" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>Replaces Meraki &amp; Cisco</h3>
+          <p>Same enterprise-grade switching, routing, VPN, and WiFi — without the per-device annual license fees that double your cost every renewal.</p>
+        </li>
+        <li class="replaces-card">
+          <div class="replaces-icon">
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="8" y="14" width="32" height="20" rx="2"/><circle cx="24" cy="24" r="5"/><circle cx="24" cy="24" r="2" fill="currentColor"/></svg>
+          </div>
+          <h3>Replaces Hikvision &amp; Verkada</h3>
+          <p>UniFi Protect cameras with built-in AI for person, vehicle, and license-plate detection — local recording, no monthly fees per camera.</p>
+        </li>
+        <li class="replaces-card">
+          <div class="replaces-icon">
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="14" y="6" width="20" height="36" rx="2"/><circle cx="24" cy="22" r="3"/><path d="M24 28v6"/></svg>
+          </div>
+          <h3>Replaces Brivo &amp; Kisi</h3>
+          <p>Card readers, mobile credentials, intercoms, and elevator control with the same UniFi dashboard — no per-door monthly subscription.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3 — PRODUCT CATEGORY GRID ============ -->
+  <section class="categories">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="eyebrow eyebrow-dark">Product lines</span>
+        <h2>Everything we install on the UniFi platform</h2>
+        <p class="section-lead">Six product categories, one unified dashboard. Pick the area that fits your project — or let us scope the whole stack.</p>
+      </div>
+
+      <div class="category-grid">
+        <a href="/unifi/cloud-gateways/" class="category-card">
+          <div class="category-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="12" width="36" height="10" rx="2"/><rect x="6" y="26" width="36" height="10" rx="2"/><circle cx="12" cy="17" r="1.5" fill="currentColor"/><circle cx="12" cy="31" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>Cloud Gateways &amp; Routers</h3>
+          <p>The brain of the network — firewall, routing, VPN, multi-WAN, and the UniFi app suite.</p>
+          <span class="card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="/unifi/switching/" class="category-card">
+          <div class="category-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="14" width="36" height="20" rx="2"/><path d="M12 22h2M16 22h2M20 22h2M24 22h2M28 22h2M32 22h2M12 26h2M16 26h2M20 26h2M24 26h2M28 26h2M32 26h2"/></svg>
+          </div>
+          <h3>Network Switches</h3>
+          <p>PoE, 2.5G, 10G, and aggregation switches for any size site.</p>
+          <span class="card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="/unifi/wifi/" class="category-card">
+          <div class="category-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 18a26 26 0 0 1 38 0"/><path d="M11 26a18 18 0 0 1 26 0"/><path d="M17 34a10 10 0 0 1 14 0"/><circle cx="24" cy="40" r="2" fill="currentColor"/></svg>
+          </div>
+          <h3>WiFi Access Points</h3>
+          <p>WiFi 6, 6E, and WiFi 7 — indoor, outdoor, and in-wall APs.</p>
+          <span class="card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="/unifi/cameras/" class="category-card">
+          <div class="category-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 14h28l8 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z"/><circle cx="20" cy="26" r="6"/></svg>
+          </div>
+          <h3>Security Cameras (Protect)</h3>
+          <p>G6 cameras, NVRs, AI LPR, doorbells, and SuperLink sensors.</p>
+          <span class="card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="/unifi/door-access/" class="category-card">
+          <div class="category-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="10" y="6" width="28" height="36" rx="2"/><circle cx="30" cy="24" r="1.5" fill="currentColor"/><path d="M16 14h16M16 18h10"/></svg>
+          </div>
+          <h3>Door Access &amp; Intercoms</h3>
+          <p>Card readers, mobile credentials, intercoms, and elevator control.</p>
+          <span class="card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="/unifi/integrations/" class="category-card">
+          <div class="category-icon">
+            <svg viewBox="0 0 48 48" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="14" cy="14" r="6"/><circle cx="34" cy="14" r="6"/><circle cx="14" cy="34" r="6"/><circle cx="34" cy="34" r="6"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg>
+          </div>
+          <h3>Integrations</h3>
+          <p>UniFi Talk phones, managed UPS, EV chargers, and NAS storage.</p>
+          <span class="card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 — WHY UNIFI ============ -->
+  <section class="comparison">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Honest comparison</span>
+        <h2>Why UniFi — and when it isn't the right call</h2>
+        <p class="section-lead">UniFi isn't right for every situation, and we'll tell you when it isn't. But for most Michigan businesses we work with, it delivers the same reliability and feature set as the legacy enterprise vendors at a fraction of the long-term cost. Here's the honest comparison.</p>
+      </div>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Factor</th>
+              <th scope="col" class="th-unifi">UniFi</th>
+              <th scope="col">Meraki / Verkada / Cisco</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Recurring license fees</th>
+              <td class="td-unifi"><span class="pill pill-good">None</span> for the core platform</td>
+              <td><span class="pill pill-bad">$$$</span> per device per year, often required to keep the device working</td>
+            </tr>
+            <tr>
+              <th scope="row">Local-first management</th>
+              <td class="td-unifi"><span class="pill pill-good">Yes</span> — works without internet</td>
+              <td>Cloud-only on most platforms</td>
+            </tr>
+            <tr>
+              <th scope="row">Hardware cost</th>
+              <td class="td-unifi"><span class="pill pill-good">30–60% less</span> for comparable specs</td>
+              <td>Premium pricing</td>
+            </tr>
+            <tr>
+              <th scope="row">Unified platform (network + cameras + access)</th>
+              <td class="td-unifi"><span class="pill pill-good">Yes</span>, one dashboard</td>
+              <td>Separate platforms, separate logins</td>
+            </tr>
+            <tr>
+              <th scope="row">Lock-in if you stop paying</th>
+              <td class="td-unifi"><span class="pill pill-good">None</span> — your hardware keeps working</td>
+              <td>Most cloud-only platforms brick the device</td>
+            </tr>
+            <tr>
+              <th scope="row">AI features (LPR, occupancy, person/vehicle)</th>
+              <td class="td-unifi"><span class="pill pill-good">Built-in</span>, no extra license</td>
+              <td>Often paid add-ons</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="callout">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p><strong>The trade-offs we'll tell you about.</strong> UniFi has a smaller support apparatus than the enterprise incumbents, fewer formal enterprise certifications, and no SLA-backed cloud. For most SMB and mid-market deployments these are non-issues — but if your environment requires a 24/7 vendor SLA, we'll point you toward the right platform, even if it isn't UniFi.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5 — WHAT WLV DOES ============ -->
+  <section class="process">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="eyebrow eyebrow-dark">Our process</span>
+        <h2>How a WLV UniFi project actually runs</h2>
+        <p class="section-lead">Five steps from your first call to a network that runs itself. No vague handoffs, no "plus shipping and handling" surprises.</p>
+      </div>
+
+      <ol class="process-steps">
+        <li class="process-step">
+          <div class="step-num">01</div>
+          <h3>Site Survey &amp; Design</h3>
+          <p>We walk your space, run an RF survey, plan camera sightlines, and audit your existing wiring and door hardware. Predictive heat-maps in UniFi Design Center show exactly where every AP and camera will go.</p>
+        </li>
+        <li class="process-step">
+          <div class="step-num">02</div>
+          <h3>Detailed Proposal</h3>
+          <p>You get a line-item proposal with the exact hardware, cabling, labor, and timeline. No surprises.</p>
+        </li>
+        <li class="process-step">
+          <div class="step-num">03</div>
+          <h3>Cabling &amp; Install</h3>
+          <p>Our crew runs every Cat6/Cat6A drop, builds your network rack, mounts every AP and camera, and pulls every door wire — all in-house by a licensed Michigan low-voltage contractor.</p>
+        </li>
+        <li class="process-step">
+          <div class="step-num">04</div>
+          <h3>Configuration &amp; Cutover</h3>
+          <p>VLANs, SSIDs, RADIUS / 802.1X, camera AI tuning, access credentialing — configured before we leave. Cutovers are scheduled when it's safest for your business.</p>
+        </li>
+        <li class="process-step">
+          <div class="step-num">05</div>
+          <h3>Ongoing Support</h3>
+          <p>Pair the install with a Dark Blue Technologies managed agreement and we monitor the whole stack 24/7, push firmware updates, and respond to issues before you notice them.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 6 — INDUSTRIES ============ -->
+  <section class="industries">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Use cases</span>
+        <h2>Michigan industries we deploy UniFi for</h2>
+        <p class="section-lead">Different industries, different priorities. Click an industry to see how we design UniFi around its specific compliance, density, and access requirements.</p>
+      </div>
+
+      <div class="industry-grid">
+        <a href="/unifi/use-cases/law-firm-network-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4l-12 4 12 4 12-4-12-4zM8 12v8c0 2 4 4 8 4s8-2 8-4v-8"/></svg>
+          <h3>Law Firms &amp; Professional Services</h3>
+        </a>
+        <a href="/unifi/use-cases/medical-office-network-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="20" height="20" rx="2"/><path d="M16 11v10M11 16h10"/></svg>
+          <h3>Healthcare &amp; Medical (HIPAA)</h3>
+        </a>
+        <a href="/unifi/use-cases/warehouse-wifi-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l12-6 12 6v14H4z"/><path d="M10 26v-8h12v8"/></svg>
+          <h3>Warehouses &amp; Distribution</h3>
+        </a>
+        <a href="/unifi/use-cases/manufacturing-network-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 26V14l6 4V14l6 4V14l6 4V8h6v18z"/></svg>
+          <h3>Manufacturing</h3>
+        </a>
+        <a href="/unifi/use-cases/multi-tenant-network-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="22" height="22" rx="1"/><path d="M11 5v22M21 5v22M5 11h22M5 21h22"/></svg>
+          <h3>Multi-Tenant &amp; Mixed-Use</h3>
+        </a>
+        <a href="/unifi/use-cases/school-network-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12l14-6 14 6-14 6z"/><path d="M8 14v8c2 2 5 3 8 3s6-1 8-3v-8"/></svg>
+          <h3>Schools &amp; Education</h3>
+        </a>
+        <a href="/unifi/use-cases/church-network-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4v6M13 7h6M6 14l10-4 10 4v14H6z"/><path d="M13 28v-8h6v8"/></svg>
+          <h3>Religious &amp; Nonprofit</h3>
+        </a>
+        <a href="/unifi/use-cases/restaurant-wifi-michigan/" class="industry-card">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4v10a3 3 0 0 1-3 3v11M9 4v10a3 3 0 0 0 3 3v11M23 4c-3 0-5 4-5 8s2 6 5 6v10"/></svg>
+          <h3>Restaurants, Retail &amp; Hospitality</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 7 — CASE STUDY ============ -->
+  <section class="case-study">
+    <div class="container">
+      <div class="case-study-card">
+        <div class="case-study-photo" aria-hidden="true">
+          <div class="cs-photo-pattern"></div>
+          <div class="cs-photo-overlay">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fecc07" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <span class="cs-badge">Featured Project</span>
+        </div>
+
+        <div class="case-study-body">
+          <span class="eyebrow eyebrow-dark">Case Study · Healthcare · Sterling Heights, MI</span>
+          <h2>Stony Creek Dermatology — HIPAA-Compliant UniFi Refresh</h2>
+
+          <div class="cs-section">
+            <h4>The Challenge</h4>
+            <p>A 12,000-sqft dermatology practice on aging consumer-grade routers and a separate camera system from a defunct vendor. Patient WiFi was leaking onto the clinical VLAN, no audit logging on door access, and the camera NVR had no remote viewing for the practice manager.</p>
+          </div>
+
+          <div class="cs-section">
+            <h4>The Solution</h4>
+            <p>One unified UniFi deployment across the building:</p>
+            <ul class="cs-pill-list">
+              <li><a href="/unifi/cloud-gateways/">1× UDM Pro Max</a></li>
+              <li><a href="/unifi/switching/">2× USW Pro 24 PoE</a></li>
+              <li><a href="/unifi/wifi/">9× U7 Pro</a></li>
+              <li><a href="/unifi/cameras/">14× G6 Bullet + G6 Pro</a></li>
+              <li><a href="/unifi/door-access/">6× UA Hub Door</a></li>
+            </ul>
+          </div>
+
+          <div class="cs-section">
+            <h4>The Outcome</h4>
+            <ul class="cs-metric-list">
+              <li><strong>$11,400/yr</strong> in eliminated recurring licensing</li>
+              <li><strong>100%</strong> HIPAA-segmented patient &amp; clinical traffic</li>
+              <li><strong>24/7</strong> remote camera + door audit access</li>
+            </ul>
+          </div>
+
+          <blockquote class="cs-quote">
+            <p>"WLV mapped every camera and AP placement before they pulled a single cable. The cutover happened on a Saturday and nobody on staff noticed Monday morning — except the part where everything actually worked."</p>
+            <cite>— Practice Manager, Stony Creek Dermatology</cite>
+          </blockquote>
+
+          <a href="/case-studies/" class="link-arrow">See more case studies
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 8 — TRUST STRIP ============ -->
+  <section class="trust-bar">
+    <div class="container">
+      <h2 class="visually-hidden">Credentials &amp; Certifications</h2>
+      <ul class="trust-bar-list" role="list">
+        <li>
+          <div class="trust-icon"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 2l12 6v8c0 7-5 13-12 14-7-1-12-7-12-14V8z"/><path d="M11 16l4 4 7-7"/></svg></div>
+          <div>
+            <strong>Licensed</strong>
+            <span>Michigan Low-Voltage Contractor</span>
+          </div>
+        </li>
+        <li>
+          <div class="trust-icon"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 12h24M9 19h4"/></svg></div>
+          <div>
+            <strong>Security Alarm</strong>
+            <span>Contractor License (Pending LARA)</span>
+          </div>
+        </li>
+        <li>
+          <div class="trust-icon"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="16" cy="11" r="6"/><path d="M16 17v13M10 22l6 5 6-5"/></svg></div>
+          <div>
+            <strong>Ubiquiti</strong>
+            <span>UniFi Professional Integrator</span>
+          </div>
+        </li>
+        <li>
+          <div class="trust-icon"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 4l11 4v8c0 7-5 12-11 14-6-2-11-7-11-14V8z"/></svg></div>
+          <div>
+            <strong>Insured</strong>
+            <span>GL · Tech E&amp;O · Workers' Comp</span>
+          </div>
+        </li>
+        <li>
+          <div class="trust-icon"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l5 3"/></svg></div>
+          <div>
+            <strong>11+ Years</strong>
+            <span>In Business · 400+ Installs</span>
+          </div>
+        </li>
+        <li>
+          <div class="trust-icon"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="16 3 20 12 30 12 22 18 25 28 16 22 7 28 10 18 2 12 12 12"/></svg></div>
+          <div>
+            <strong>BBB Accredited</strong>
+            <span>A+ Rating</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 9 — SERVICE AREA ============ -->
+  <section class="service-area">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow eyebrow-dark">Service area</span>
+        <h2>Where we install UniFi in Michigan</h2>
+        <p class="section-lead">Headquartered in Taylor, dispatching across the state. If your city isn't listed, ask — we travel for the right project.</p>
+      </div>
+
+      <div class="region-grid">
+        <div class="region-card">
+          <h3>Metro Detroit</h3>
+          <ul>
+            <li>Detroit</li><li>Dearborn</li><li>Southfield</li><li>Troy</li><li>Royal Oak</li>
+            <li>Warren</li><li>Sterling Heights</li><li>Livonia</li><li>Taylor</li><li>Farmington Hills</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h3>Oakland County</h3>
+          <ul>
+            <li>Auburn Hills</li><li>Bloomfield Hills</li><li>Rochester Hills</li><li>Novi</li><li>Birmingham</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h3>Washtenaw / Ann Arbor</h3>
+          <ul>
+            <li>Ann Arbor</li><li>Ypsilanti</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h3>West Michigan</h3>
+          <ul>
+            <li>Grand Rapids</li><li>Holland</li><li>Kalamazoo</li><li>Battle Creek</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h3>Mid-Michigan</h3>
+          <ul>
+            <li>Lansing</li><li>East Lansing</li><li>Owosso</li><li>Flint</li><li>Saginaw</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h3>Northern Michigan</h3>
+          <ul>
+            <li>Traverse City</li><li>Petoskey</li><li>Cadillac</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 10 — FAQ ============ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently asked about UniFi in Michigan</h2>
+        <p class="section-lead">Common questions from clients evaluating UniFi against their current platform. Have a more specific question? <a href="#final-cta">Send it our way</a>.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>
+            <span>Is WLV a licensed UniFi installer in Michigan?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>Yes. Wolverine Low Voltage is a licensed Michigan low-voltage contractor and an authorized UniFi/Ubiquiti professional integrator. We design, install, and support UniFi systems across the state — from a single AP to multi-site deployments.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>What does a UniFi installation cost?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>Pricing depends on site size, cabling, and which UniFi product lines you need (WiFi, cameras, door access). Most small-office WiFi refreshes start around $4–8K installed; multi-camera Protect deployments run higher. We always provide a line-item proposal — no surprises.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>Can UniFi replace my Meraki or Cisco network?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>In most small-to-mid business environments, yes — and you eliminate recurring license fees in the process. We give an honest assessment first: if your environment is better served by Meraki or Cisco (very large enterprise, specific SLA needs), we'll tell you.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>Does UniFi work for multi-tenant buildings?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>Yes. UniFi supports VLAN-per-tenant, isolated WiFi networks per unit, and per-tenant billing/usage reporting. We've deployed it in mixed-use buildings, apartment complexes, and shared office spaces across Michigan.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>What's the difference between WiFi 6, 6E, and WiFi 7?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>WiFi 6 (802.11ax) is the modern baseline — fast, efficient, great range. WiFi 6E adds the 6 GHz band for less interference. WiFi 7 adds Multi-Link Operation and wider channels for very high throughput. For most offices, WiFi 6 or 6E hits the sweet spot today; WiFi 7 makes sense for high-density or future-proofing.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>Will UniFi cameras work outside in Michigan winters?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>Yes. UniFi Protect outdoor cameras (G6 Bullet, G6 Pro, AI Pro) are IP66/IP67 rated and operate well below freezing. We mount them with proper conduit and weatherproofing for Michigan conditions, and we factor cold-weather PoE budget into the design.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>Can UniFi Access integrate with UniFi cameras?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>Yes — that integration is one of the biggest reasons people choose the platform. A door unlock event can pull up the camera footage from that door automatically, all from the same dashboard, with no per-door monthly fee.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <span>Do you offer ongoing managed support?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p>Yes. Through our managed services partner Dark Blue Technologies (DBT), we offer 24/7 monitoring, firmware management, and incident response. Most clients pair installation with a managed agreement so they never have to think about the network again.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 11 — RESOURCES / BLOG ============ -->
+  <section class="resources">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow eyebrow-dark">From the blog</span>
+        <h2>Recent UniFi &amp; networking posts</h2>
+        <p class="section-lead">Field-tested writeups from real Michigan deployments. Pricing, planning, and the trade-offs you only learn on-site.</p>
+      </div>
+
+      <div class="post-grid">
+        <article class="post-card">
+          <div class="post-thumb post-thumb--gradient-1" aria-hidden="true">
+            <span class="post-tag">Comparison</span>
+          </div>
+          <div class="post-body">
+            <time datetime="2026-04-22">April 22, 2026</time>
+            <h3><a href="/blog/unifi-vs-meraki-michigan-2026/">UniFi vs Meraki: A Michigan IT Owner's Honest Comparison in 2026</a></h3>
+            <p>Real-world cost, performance, and lock-in comparison after 40+ deployments on both platforms.</p>
+            <a href="/blog/unifi-vs-meraki-michigan-2026/" class="link-arrow">Read more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-thumb post-thumb--gradient-2" aria-hidden="true">
+            <span class="post-tag">Planning</span>
+          </div>
+          <div class="post-body">
+            <time datetime="2026-04-08">April 8, 2026</time>
+            <h3><a href="/blog/unifi-protect-poe-budget/">How to Plan PoE Budget for a 50-Camera UniFi Protect Deployment</a></h3>
+            <p>Watts, switch picks, and the cold-weather padding most installers forget about.</p>
+            <a href="/blog/unifi-protect-poe-budget/" class="link-arrow">Read more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-thumb post-thumb--gradient-3" aria-hidden="true">
+            <span class="post-tag">WiFi</span>
+          </div>
+          <div class="post-body">
+            <time datetime="2026-03-25">March 25, 2026</time>
+            <h3><a href="/blog/wifi-7-vs-wifi-6e-office/">WiFi 7 vs WiFi 6E: Should Your Office Upgrade?</a></h3>
+            <p>Where the new MLO actually matters — and where it's still mostly marketing.</p>
+            <a href="/blog/wifi-7-vs-wifi-6e-office/" class="link-arrow">Read more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="resources-footer">
+        <a href="/blog/category/unifi/" class="btn btn-outline">All UniFi articles
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 12 — FINAL CTA ============ -->
+  <section class="final-cta" id="final-cta">
+    <div class="container">
+      <div class="final-cta-grid">
+        <div class="final-cta-copy">
+          <span class="eyebrow">Let's build it</span>
+          <h2>Ready to deploy UniFi in Michigan?</h2>
+          <p>Tell us about your site. We'll respond with a real proposal within one business day — not a brochure, not a sales pitch.</p>
+          <ul class="cta-bullets" role="list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Response within 1 business day</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>No high-pressure sales calls</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Licensed, insured, in-house crew</li>
+          </ul>
+          <div class="cta-call">
+            <span>Prefer the phone?</span>
+            <a href="tel:+13138995420">(313) 899-5420</a>
+          </div>
+        </div>
+
+        <form class="quote-form" id="quote-form" novalidate>
+          <div class="form-row">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-row form-row--two">
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-row form-row--two">
+            <div>
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" autocomplete="organization" />
+            </div>
+            <div>
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" autocomplete="address-level2" />
+            </div>
+          </div>
+
+          <fieldset class="form-row">
+            <legend>What are you looking at?</legend>
+            <div class="checkbox-grid">
+              <label class="checkbox"><input type="checkbox" name="interest" value="wifi" /> <span>WiFi</span></label>
+              <label class="checkbox"><input type="checkbox" name="interest" value="switches" /> <span>Switches</span></label>
+              <label class="checkbox"><input type="checkbox" name="interest" value="cameras" /> <span>Cameras</span></label>
+              <label class="checkbox"><input type="checkbox" name="interest" value="door-access" /> <span>Door Access</span></label>
+              <label class="checkbox"><input type="checkbox" name="interest" value="all" /> <span>All of it</span></label>
+              <label class="checkbox"><input type="checkbox" name="interest" value="unsure" /> <span>Not sure</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-row">
+            <label for="details">Tell us about your site</label>
+            <textarea id="details" name="details" rows="4" placeholder="Building size, current setup, timeline..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            Send my project details
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+
+          <p class="form-success" id="form-success" hidden>Thanks — we got it. We'll be in touch within one business day.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+              <rect width="40" height="40" rx="8" fill="#fecc07"/>
+              <path d="M10 12l5 16 5-10 5 10 5-16" stroke="#0d0d0d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>Wolverine</strong>
+            <span>Low Voltage</span>
+          </span>
+        </div>
+        <p>Michigan's trusted low-voltage contractor. Structured cabling, UniFi networks, security cameras, and door access — done right the first time.</p>
+        <p class="footer-addr">
+          25526 Goddard Rd<br/>Taylor, MI 48180<br/>
+          <a href="tel:+13138995420">(313) 899-5420</a><br/>
+          <a href="mailto:info@wolverinelowvoltage.com">info@wolverinelowvoltage.com</a>
+        </p>
+      </div>
+
+      <div>
+        <h4>UniFi</h4>
+        <ul class="footer-list">
+          <li><a href="/unifi/cloud-gateways/">Cloud Gateways</a></li>
+          <li><a href="/unifi/switching/">Switching</a></li>
+          <li><a href="/unifi/wifi/">WiFi</a></li>
+          <li><a href="/unifi/cameras/">Cameras</a></li>
+          <li><a href="/unifi/door-access/">Door Access</a></li>
+          <li><a href="/unifi/integrations/">Integrations</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-list">
+          <li><a href="/structured-cabling/">Structured Cabling</a></li>
+          <li><a href="/security-cameras/">Security Cameras</a></li>
+          <li><a href="/access-control/">Access Control</a></li>
+          <li><a href="/managed-it/">Managed IT</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-list">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/service-areas/">Service Areas</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-base">
+      <p>&copy; <span id="year">2026</span> Wolverine Low Voltage. All rights reserved.</p>
+      <p><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
