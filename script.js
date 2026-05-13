@@ -83,7 +83,7 @@
   /* -------- Reveal-on-scroll for cards / sections -------- */
   if ("IntersectionObserver" in window) {
     var revealEls = document.querySelectorAll(
-      ".replaces-card, .category-card, .process-step, .industry-card, .region-card, .post-card, .trust-bar-list li, .case-study-card"
+      ".replaces-card, .category-card, .ts-card, .industry-card, .region-card, .post-card, .trust-bar-list li, .case-study-card"
     );
     revealEls.forEach(function (el) {
       el.style.opacity = "0";
@@ -103,6 +103,51 @@
       });
     }, { rootMargin: "0px 0px -40px 0px", threshold: 0.08 });
     revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  /* -------- Process slider (mobile): dot position + tap-to-jump -------- */
+  var slider = document.querySelector(".process-timeline");
+  var dots = document.querySelectorAll(".process-dot");
+  var steps = document.querySelectorAll(".ts-step");
+  if (slider && dots.length && steps.length) {
+    var setActive = function (idx) {
+      dots.forEach(function (d, i) {
+        d.classList.toggle("is-active", i === idx);
+      });
+    };
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () {
+        var target = steps[i];
+        if (!target) return;
+        slider.scrollTo({
+          left: target.offsetLeft - slider.offsetLeft,
+          behavior: "smooth"
+        });
+      });
+    });
+
+    var updateActiveFromScroll = function () {
+      var sliderRect = slider.getBoundingClientRect();
+      var probe = sliderRect.left + 40; // detect the card sitting closest to the start
+      var bestIdx = 0;
+      var bestDist = Infinity;
+      for (var i = 0; i < steps.length; i++) {
+        var r = steps[i].getBoundingClientRect();
+        var dist = Math.abs(r.left - probe);
+        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+      }
+      setActive(bestIdx);
+    };
+    var scrollRaf;
+    slider.addEventListener("scroll", function () {
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(function () {
+        updateActiveFromScroll();
+        scrollRaf = 0;
+      });
+    }, { passive: true });
+    updateActiveFromScroll();
   }
 
   /* -------- Header shadow on scroll -------- */

@@ -610,37 +610,165 @@ section { padding: var(--section-y) 0; }
 .callout strong { color: #fff; }
 
 /* ============================================================
-   SECTION 5 — PROCESS
+   SECTION 5 — PROCESS (alternating timeline)
    ============================================================ */
-.process { background: var(--bg-soft); }
-.process-steps {
-  list-style: none; padding: 0; margin: 0;
-  counter-reset: step;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
-  position: relative;
+.process { background: var(--bg-soft); position: relative; overflow: hidden; }
+.process::before,
+.process::after {
+  content: "";
+  position: absolute;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254,204,7,.18), transparent 70%);
+  pointer-events: none;
 }
-.process-step {
+.process::before { top: 12%; left: -120px; }
+.process::after { bottom: 6%; right: -120px; }
+
+.process-timeline {
+  list-style: none; padding: 0; margin: 0;
+  max-width: 980px;
+  margin-left: auto; margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+/* Vertical gold rail */
+.process-timeline::before {
+  content: "";
+  position: absolute;
+  top: 32px; bottom: 32px;
+  left: 50%;
+  width: 3px;
+  background:
+    repeating-linear-gradient(180deg,
+      var(--gold) 0 14px,
+      transparent 14px 22px);
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+/* Each step is its own 3-column row: card | rail | card */
+.ts-step {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: start;
+}
+
+/* Circular numbered node sits on the rail */
+.ts-node {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  position: relative;
+  z-index: 2;
+  width: 68px; height: 68px;
+  display: grid; place-items: center;
+  background: var(--ink);
+  color: var(--gold);
+  border-radius: 50%;
+  border: 4px solid var(--bg-soft);
+  box-shadow: 0 10px 24px rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.04);
+  transition: transform .25s ease, background .2s ease, color .2s ease;
+}
+.ts-node::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px dashed rgba(254,204,7,.45);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.ts-step:hover .ts-node { transform: scale(1.06); background: var(--gold); color: var(--ink); }
+.ts-step:hover .ts-node::after { opacity: 1; }
+.ts-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Content card */
+.ts-card {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 26px 22px;
+  padding: 24px 26px;
+  box-shadow: var(--shadow-sm);
   position: relative;
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
 }
-.process-step:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.step-num {
+.ts-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+}
+.ts-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.ts-card p { color: var(--ink-soft); font-size: .95rem; margin: 0; }
+.ts-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.ts-icon {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  background: var(--bg-warm);
+  color: var(--ink);
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: background .2s ease, color .2s ease;
+}
+.ts-card:hover .ts-icon { background: var(--ink); color: var(--gold); }
+.ts-label {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 1.6rem;
-  color: var(--gold-deep);
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  line-height: 1;
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-.process-step h3 { font-size: 1.05rem; margin-bottom: 8px; }
-.process-step p { color: var(--ink-soft); font-size: .9rem; margin: 0; }
+
+/* Alternating sides: odd → left, even → right */
+.ts-step:nth-child(odd) .ts-card { grid-column: 1; }
+.ts-step:nth-child(even) .ts-card { grid-column: 3; }
+
+/* Elbow connector from card to rail */
+.ts-card::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  width: 12px; height: 12px;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  transition: border-color .2s ease;
+}
+.ts-step:nth-child(odd) .ts-card::before {
+  right: -7px;
+  transform: rotate(45deg);
+}
+.ts-step:nth-child(even) .ts-card::before {
+  left: -7px;
+  transform: rotate(-135deg);
+}
+.ts-card:hover::before { border-color: var(--gold); }
+
+/* Faint dashed connector line from rail to card */
+.ts-card::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  height: 1px;
+  width: 28px;
+  border-top: 1.5px dashed rgba(0,0,0,.18);
+}
+.ts-step:nth-child(odd) .ts-card::after { right: -28px; }
+.ts-step:nth-child(even) .ts-card::after { left: -28px; }
+
+.process-cta { display: flex; justify-content: center; margin-top: 40px; position: relative; z-index: 1; }
+
+/* Scroll dots (mobile slider position indicator) — hidden on desktop */
+.process-dots { display: none; }
 
 /* ============================================================
    SECTION 6 — INDUSTRIES
@@ -1137,7 +1265,6 @@ fieldset.form-row { border: 0; padding: 0; margin-inline: 0; }
     grid-template-columns: repeat(2, 1fr);
   }
   .industry-grid { grid-template-columns: repeat(3, 1fr); }
-  .process-steps { grid-template-columns: repeat(3, 1fr); }
   .trust-bar-list { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .case-study-card { grid-template-columns: 1fr; }
@@ -1198,8 +1325,114 @@ fieldset.form-row { border: 0; padding: 0; margin-inline: 0; }
   .trust-strip { gap: 10px 16px; font-size: .85rem; }
 
   .category-grid, .replaces-grid, .post-grid, .region-grid,
-  .industry-grid, .process-steps, .trust-bar-list, .footer-grid {
+  .industry-grid, .trust-bar-list, .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Timeline becomes a horizontal slider on mobile */
+  .process-timeline {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
+    scroll-behavior: smooth;
+    padding: 8px 20px 24px;
+    margin: 0 calc(-1 * clamp(16px, 3vw, 28px));
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .process-timeline::-webkit-scrollbar { display: none; }
+  .process-timeline::before { display: none; }
+
+  /* Each step becomes a self-contained card */
+  .ts-step {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 0 0 86%;
+    max-width: 360px;
+    min-height: 280px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 22px 22px 24px;
+    box-shadow: var(--shadow);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .ts-step::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold);
+  }
+
+  /* Node moves to top-left of the card, alongside content */
+  .ts-node {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
+    width: 56px; height: 56px;
+    border-width: 3px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  }
+  .ts-num { font-size: 1.05rem; }
+
+  /* Inner card flattens — the wrapping .ts-step IS the card now */
+  .ts-card,
+  .ts-step:nth-child(odd) .ts-card,
+  .ts-step:nth-child(even) .ts-card {
+    grid-column: auto;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .ts-card::before,
+  .ts-card::after,
+  .ts-step:nth-child(odd) .ts-card::before,
+  .ts-step:nth-child(even) .ts-card::before,
+  .ts-step:nth-child(odd) .ts-card::after,
+  .ts-step:nth-child(even) .ts-card::after {
+    display: none;
+  }
+  .ts-card h3 { font-size: 1.1rem; }
+  .ts-card p { font-size: .92rem; }
+  .ts-card:hover { transform: none; }
+  .ts-card-head { margin-bottom: 10px; }
+
+  /* Position dots */
+  .process-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 4px 0;
+  }
+  .process-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    background: var(--line-2);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease, width .2s ease;
+  }
+  .process-dot.is-active {
+    background: var(--gold-deep);
+    width: 24px;
+    border-radius: 999px;
+  }
+  .process-dot:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
   }
   .industry-grid { grid-template-columns: repeat(2, 1fr); }
   .checkbox-grid { grid-template-columns: repeat(2, 1fr); }
