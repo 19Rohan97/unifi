@@ -1,0 +1,297 @@
+/* ============================================================
+   Wolverine Low Voltage — Contact page styles
+   Extends styles.css (shared brand system)
+   ============================================================ */
+
+/* The hero is the shared .page-hero block; the quick-action strip
+   is the shared .action-bar block (both in styles.css). */
+
+/* ============ FORM + SIDEBAR ============ */
+.contact-main {
+  background: var(--bg-soft);
+  padding: var(--section-y) 0;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+.contact-form-head { margin-bottom: 24px; }
+.contact-form-head h2 { margin-bottom: 8px; }
+.contact-form-head p { color: var(--ink-soft); margin: 0; }
+
+/* Form reuses .quote-form from styles.css; contact-specific extras: */
+.contact-form select {
+  width: 100%;
+  padding: 11px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230d0d0d' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+.contact-form select:focus {
+  outline: none;
+  border-color: var(--gold-deep);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(254,204,7,.22);
+}
+.legend-hint {
+  font-weight: 500;
+  font-size: .78rem;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.form-trust-nudge {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 14px 0 0;
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.form-trust-nudge svg {
+  color: var(--gold-deep);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---- Sidebar ---- */
+.contact-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 92px;
+}
+
+.contact-card {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 26px;
+}
+.contact-card h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.contact-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.contact-card-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.contact-card-icon {
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  background: rgba(254,204,7,.12);
+  color: var(--gold);
+  border-radius: 10px;
+}
+.contact-card-list strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 3px;
+}
+.contact-card-list a,
+.contact-card-list span {
+  color: #fff;
+  text-decoration: none;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.contact-card-list a:hover { color: var(--gold); }
+.contact-card-note {
+  font-style: normal;
+  font-size: .8rem;
+  color: rgba(255,255,255,.55);
+}
+
+/* What happens next */
+.next-steps {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+}
+.next-steps h3 {
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+  position: relative;
+}
+.next-steps h3::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 38px; height: 2px;
+  background: var(--gold);
+}
+.next-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.next-steps-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.next-step-num {
+  width: 30px; height: 30px;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  background: var(--ink);
+  color: var(--gold);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: .85rem;
+}
+.next-steps-list strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .95rem;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.next-steps-list p {
+  font-size: .85rem;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Trust strip */
+.contact-trust {
+  list-style: none;
+  padding: 18px 22px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--gold-soft);
+  border: 1px solid rgba(254,204,7,.45);
+  border-radius: var(--radius);
+}
+.contact-trust li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.contact-trust svg {
+  color: var(--gold-deep);
+  flex-shrink: 0;
+}
+
+/* ============ MAP ============ */
+.contact-map {
+  position: relative;
+  background: var(--ink);
+}
+.contact-map-frame {
+  position: relative;
+  height: clamp(320px, 40vw, 460px);
+}
+.contact-map-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(35%) contrast(1.02);
+}
+.contact-map-card {
+  position: absolute;
+  left: clamp(16px, 4vw, 64px);
+  bottom: clamp(16px, 3vw, 40px);
+  max-width: 360px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--gold);
+}
+.contact-map-card h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.contact-map-card p {
+  color: rgba(255,255,255,.72);
+  font-size: .88rem;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.contact-map-card .link-arrow { color: var(--gold); }
+.contact-map-card .link-arrow:hover { color: #fff; }
+
+/* ============ FAQ tweaks ============ */
+.contact-faq { background: #fff; }
+.contact-faq .faq-item p a { color: var(--ink); font-weight: 600; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+  .contact-trust { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .contact-sidebar { grid-template-columns: 1fr; }
+  .contact-map-card {
+    position: static;
+    max-width: none;
+    border-radius: 0;
+    border-top-width: 4px;
+  }
+  .contact-map-frame {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-map-frame iframe {
+    position: static;
+    height: 280px;
+  }
+}

@@ -18,6 +18,16 @@
   --gold-deep: #f5b800;
   --gold-soft: #fff3c2;
 
+  /* UniFi brand accents — used to mark UniFi-specific elements.
+     WLV gold stays the brand + conversion color. */
+  --uf-blue: rgb(0, 111, 255);
+  --uf-blue-deep: #003299;
+  --uf-blue-ink: #001a4d;
+  --uf-bg-1: #050d24;
+  --uf-bg-2: #0a1f4a;
+  --uf-line: rgba(0, 111, 255, .26);
+  --uf-text-soft: rgba(220, 232, 255, .82);
+
   --good: #2ea44f;
   --bad: #c4373a;
 
@@ -212,18 +222,97 @@ p { margin: 0 0 1em; }
   height: 72px;
 }
 .brand { display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+.brand-logo { height: 52px; width: auto; display: block; }
 .brand-mark { display: inline-flex; }
 .brand-text { display: inline-flex; flex-direction: column; line-height: 1; font-family: var(--font-display); }
 .brand-text strong { font-weight: 900; font-size: 1.05rem; letter-spacing: .01em; }
 .brand-text span { font-weight: 700; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; opacity: .75; margin-top: 4px; }
 
 .primary-nav { margin-left: auto; display: flex; align-items: center; gap: 28px; }
-.primary-nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+.primary-nav > ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+.primary-nav > ul > li { position: relative; }
 .primary-nav a { color: rgba(255,255,255,.85); text-decoration: none; font-weight: 600; font-size: .95rem; padding: 6px 2px; position: relative; }
 .primary-nav a:hover { color: #fff; }
 .primary-nav a.is-current { color: var(--gold); }
 .primary-nav a.is-current::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--gold); border-radius: 2px;
+}
+
+/* ---------- Nav dropdowns ---------- */
+.nav-item--dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-chevron {
+  flex-shrink: 0;
+  transition: transform .2s ease;
+  opacity: .65;
+}
+.nav-dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: -10px;
+  min-width: 230px;
+  background: rgba(13,13,13,.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.10);
+  border-top: 2px solid var(--gold);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 18px 44px rgba(0,0,0,.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 60;
+}
+/* Hover bridge so the cursor can cross the gap without closing */
+.nav-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -12px; left: 0; right: 0;
+  height: 12px;
+}
+.nav-dropdown li { margin: 0; }
+.nav-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: .9rem;
+  color: rgba(255,255,255,.82);
+  white-space: nowrap;
+  transition: background .15s ease, color .15s ease, padding-left .15s ease;
+}
+.nav-dropdown a:hover {
+  background: rgba(254,204,7,.10);
+  color: var(--gold);
+  padding-left: 18px;
+}
+.nav-dropdown a.is-current::after { display: none; }
+.nav-dropdown .nav-dropdown-all {
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 4px;
+}
+
+@media (min-width: 721px) {
+  .nav-item--dropdown:hover > .nav-dropdown,
+  .nav-item--dropdown:focus-within > .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-item--dropdown:hover > a .nav-chevron,
+  .nav-item--dropdown:focus-within > a .nav-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
 }
 
 .nav-toggle {
@@ -248,6 +337,276 @@ p { margin: 0 0 1em; }
 .breadcrumbs a { color: var(--ink-soft); text-decoration: none; }
 .breadcrumbs a:hover { color: var(--ink); }
 .breadcrumbs [aria-current] { color: var(--ink); font-weight: 600; }
+
+/* ============================================================
+   PAGE HERO (reusable interior-page block)
+
+   Usage:
+   <section class="page-hero">
+     <div class="page-hero__bg" aria-hidden="true"></div>
+     <div class="container page-hero__inner">
+       <div class="page-hero__content">
+         <span class="page-hero__eyebrow">Section name</span>
+         <h1 class="page-hero__title">Title with <span class="hl">highlight</span>.</h1>
+         <p class="page-hero__lead">One or two sentences.</p>
+       </div>
+       <figure class="page-hero__visual">[img + optional figcaption]</figure>  <!-- optional -->
+     </div>
+   </section>
+
+   Modifiers: .page-hero--compact (tighter padding, e.g. legal pages)
+   Pair with .action-bar--bridge in the next section for an
+   overlapping action strip (see ACTION BAR below).
+   ============================================================ */
+.page-hero {
+  position: relative;
+  background: var(--ink);
+  color: #fff;
+  overflow: hidden;
+  padding-top: clamp(48px, 7vw, 84px);
+}
+.page-hero--compact { padding-top: clamp(36px, 5vw, 56px); }
+
+.page-hero__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(800px 440px at 88% -10%, rgba(254,204,7,.20), transparent 60%),
+    radial-gradient(600px 360px at -5% 110%, rgba(254,204,7,.10), transparent 65%),
+    linear-gradient(180deg, #0d0d0d 0%, #131312 100%);
+}
+.page-hero__bg::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 30%, transparent 75%);
+}
+
+.page-hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: end;
+  /* extra room so a bridging .action-bar can overlap without
+     colliding with the visual's offset frame */
+  padding-bottom: clamp(72px, 9vw, 110px);
+}
+
+.page-hero__content { max-width: 760px; }
+
+.page-hero__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .75rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.page-hero__eyebrow::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--gold);
+  margin-bottom: 12px;
+}
+
+.page-hero__title {
+  color: #fff;
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  margin-bottom: 16px;
+}
+.page-hero__title .hl {
+  background: linear-gradient(180deg, transparent 60%, rgba(254,204,7,.45) 60%);
+  padding: 0 .1em;
+}
+
+.page-hero__lead {
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,.82);
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* Optional framed photo, bottom-aligned against the content.
+   Markup: <figure class="page-hero__visual">
+             <img src="..." alt="..." />
+             <figcaption class="page-hero__visual-tag">Caption</figcaption>
+           </figure> */
+.page-hero__visual {
+  position: relative;
+  width: clamp(220px, 24vw, 320px);
+  margin: 0;
+}
+.page-hero__visual::before {
+  content: "";
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 2px solid rgba(254,204,7,.55);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+.page-hero__visual img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: block;
+}
+.page-hero__visual-tag {
+  position: absolute;
+  left: 14px;
+  bottom: -12px;
+  z-index: 1;
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(254,204,7,.35);
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .page-hero__inner { grid-template-columns: 1fr; align-items: start; padding-bottom: clamp(64px, 10vw, 80px); }
+  .page-hero__visual { display: none; }
+}
+
+/* ============================================================
+   ACTION BAR (reusable) — elevated strip of 2–4 quick actions.
+   Standalone anywhere, or bridge it over a .page-hero seam by
+   placing it first inside the next section's container with the
+   --bridge modifier:
+
+   <section class="...">
+     <div class="container">
+       <div class="action-bar action-bar--bridge">
+         <a href="..." class="action-bar__item">
+           <span class="action-bar__icon">[svg]</span>
+           <span class="action-bar__text">
+             <strong>Label</strong>
+             <span>Value line</span>
+           </span>
+           <svg class="action-bar__arrow" ...>
+         </a>
+         ...
+       </div>
+       [rest of section]
+   ============================================================ */
+.action-bar {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+/* Pulls the bar up over the preceding dark hero */
+.action-bar--bridge {
+  margin-top: calc(-1 * var(--section-y) - 44px);
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.action-bar__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .2s ease;
+}
+.action-bar__item:not(:first-child) { border-left: 1px solid var(--line); }
+.action-bar__item:hover { background: var(--bg-warm); }
+.action-bar__item::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.action-bar__item:hover::after { transform: scaleX(1); }
+
+.action-bar__icon {
+  width: 46px; height: 46px;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  background: var(--ink);
+  color: var(--gold);
+  border-radius: 12px;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.action-bar__item:hover .action-bar__icon {
+  background: var(--gold);
+  color: var(--ink);
+  transform: scale(1.05);
+}
+
+.action-bar__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.action-bar__text strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.action-bar__text span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .98rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-bar__arrow {
+  flex-shrink: 0;
+  color: var(--line-2);
+  transition: transform .2s ease, color .2s ease;
+}
+.action-bar__item:hover .action-bar__arrow {
+  transform: translateX(4px);
+  color: var(--gold-deep);
+}
+
+@media (max-width: 720px) {
+  .action-bar { grid-template-columns: 1fr; }
+  .action-bar__item:not(:first-child) {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .action-bar--bridge { margin-top: calc(-1 * var(--section-y) - 32px); }
+}
 
 /* ============================================================
    HERO
@@ -298,6 +657,43 @@ p { margin: 0 0 1em; }
   color: var(--gold);
   margin-bottom: 14px;
 }
+
+/* Hero integrator badge — prominent "Authorized [UniFi logo] Integrator" lockup */
+.hero-integrator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 12px;
+  margin-bottom: 22px;
+  background: rgba(0,111,255,.14);
+  border: 1px solid rgba(0,111,255,.45);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(0,111,255,.18);
+}
+.hero-integrator-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--uf-blue);
+  box-shadow: 0 0 0 4px rgba(0,111,255,.25), 0 0 12px rgba(0,111,255,.8);
+  animation: rel-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.hero-integrator-label { color: #8ab8ff; }
+.hero-integrator-suffix { color: rgba(255,255,255,.78); font-weight: 700; }
+.unifi-mark--hero {
+  height: 14px;
+  color: #fff;
+  padding: 0 4px;
+  border-left: 1px solid rgba(255,255,255,.18);
+  border-right: 1px solid rgba(255,255,255,.18);
+}
+.unifi-mark--hero .unifi-logo { height: 14px; display: block; }
 .eyebrow-dark { color: var(--ink-3); }
 .lead {
   font-size: clamp(1.02rem, 1.4vw, 1.18rem);
@@ -363,9 +759,9 @@ p { margin: 0 0 1em; }
   font-size: .72rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(254,204,7,.10);
-  border: 1px solid rgba(254,204,7,.25);
+  color: #8ab8ff;
+  background: rgba(0,111,255,.12);
+  border: 1px solid var(--uf-line);
   padding: 4px 10px;
   border-radius: 999px;
 }
@@ -385,7 +781,22 @@ p { margin: 0 0 1em; }
 }
 .rack-unit--lit::after {
   content: ""; position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-  width: 5px; height: 5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold);
+  width: 5px; height: 5px; border-radius: 50%; background: var(--uf-blue); box-shadow: 0 0 8px var(--uf-blue);
+}
+.rack-unit--branded {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background: linear-gradient(180deg, #2a2a2a, #161616);
+  color: rgba(255,255,255,.86);
+}
+.rack-unit--branded .unifi-logo { height: 11px; display: block; }
+.rack-unit--branded::after {
+  content: "";
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--uf-blue); box-shadow: 0 0 6px var(--uf-blue);
 }
 .rack-unit--switch {
   height: 22px;
@@ -409,10 +820,19 @@ p { margin: 0 0 1em; }
 .ap-led {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 16%; height: 16%; border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 18px var(--gold);
+  background: var(--uf-blue);
+  box-shadow: 0 0 18px var(--uf-blue);
   animation: pulse 2.4s ease-in-out infinite;
 }
+.ap-brand {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #2a2a2a;
+  opacity: .85;
+}
+.ap-brand .unifi-logo { height: 8px; display: block; }
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   50% { opacity: .55; transform: translate(-50%, -50%) scale(.85); }
@@ -436,7 +856,7 @@ p { margin: 0 0 1em; }
   border-radius: 50%;
   background:
     radial-gradient(circle at 35% 35%, #888 0 18%, #2a2a2a 18% 60%, #000 60% 100%);
-  box-shadow: 0 0 0 4px #1a1a1a, 0 0 18px rgba(254,204,7,.25);
+  box-shadow: 0 0 0 4px #1a1a1a, 0 0 18px rgba(0,111,255,.35);
 }
 
 /* ============================================================
@@ -447,6 +867,53 @@ section { padding: var(--section-y) 0; }
 .section-head--center { margin-left: auto; margin-right: auto; text-align: center; }
 .section-head h2 { margin-bottom: 14px; }
 .section-lead { font-size: 1.05rem; color: var(--ink-soft); margin: 0; }
+
+/* UniFi logo (used sparingly: explainer, platform-fit card, trust bar) */
+.unifi-logo {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+  fill: currentColor;
+}
+.unifi-mark {
+  display: inline-flex;
+  align-items: center;
+  color: var(--uf-blue);
+  opacity: .95;
+}
+/* Inline lockup next to the H2 in the explainer */
+.head-lockup {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  margin-bottom: 14px;
+}
+.head-lockup h2 { margin: 0; }
+.head-lockup .unifi-mark {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--uf-line);
+  box-shadow: 0 4px 14px rgba(0,111,255,.10);
+  align-self: center;
+  position: relative;
+  top: -3px;
+}
+.head-lockup .unifi-mark .unifi-logo {
+  height: 16px;
+  display: block;
+}
+.head-lockup .unifi-mark::before {
+  content: "Powered by";
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 10px;
+}
 
 /* ============================================================
    SECTION 2 — EXPLAINER
@@ -465,12 +932,12 @@ section { padding: var(--section-y) 0; }
   padding: 32px 26px;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-.replaces-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--gold); }
+.replaces-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--uf-blue); }
 .replaces-icon {
   width: 56px; height: 56px;
   display: grid; place-items: center;
-  background: var(--ink);
-  color: var(--gold);
+  background: linear-gradient(135deg, var(--uf-bg-2), var(--uf-bg-1));
+  color: #4d9aff;
   border-radius: 14px;
   margin-bottom: 18px;
 }
@@ -501,7 +968,7 @@ section { padding: var(--section-y) 0; }
 .category-card::before {
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--uf-blue), var(--gold));
   transform: scaleX(0); transform-origin: left;
   transition: transform .3s ease;
 }
@@ -520,7 +987,7 @@ section { padding: var(--section-y) 0; }
   margin-bottom: 20px;
   transition: background .2s ease, color .2s ease;
 }
-.category-card:hover .category-icon { background: var(--ink); color: var(--gold); }
+.category-card:hover .category-icon { background: linear-gradient(135deg, var(--uf-bg-2), var(--uf-bg-1)); color: #4d9aff; }
 .category-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
 .category-card p { color: var(--ink-soft); font-size: .95rem; margin-bottom: 18px; flex-grow: 1; }
 .card-link {
@@ -572,9 +1039,9 @@ section { padding: var(--section-y) 0; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    radial-gradient(900px 400px at 80% 0%, rgba(254,204,7,.22), transparent 60%),
-    radial-gradient(700px 400px at 0% 100%, rgba(254,204,7,.10), transparent 65%),
-    linear-gradient(135deg, #1c1c1c 0%, #0d0d0d 100%);
+    radial-gradient(900px 400px at 80% 0%, rgba(0,111,255,.38), transparent 60%),
+    radial-gradient(700px 400px at 0% 100%, rgba(0,111,255,.16), transparent 65%),
+    linear-gradient(135deg, var(--uf-bg-2) 0%, var(--uf-bg-1) 100%);
   margin-bottom: 26px;
   text-decoration: none;
   transition: transform .25s ease, box-shadow .3s ease;
@@ -633,15 +1100,24 @@ section { padding: var(--section-y) 0; }
   position: absolute;
   bottom: 18px; left: 18px;
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: .68rem;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: rgba(254,204,7,.85);
-  padding: 4px 0;
-  border-top: 1px solid rgba(254,204,7,.35);
+  color: rgba(141,184,255,.95);
+  padding: 6px 0 0;
+  border-top: 1px solid var(--uf-line);
 }
+.release-art-tag .unifi-logo {
+  height: 12px;
+  display: block;
+  color: #4d9aff;
+}
+.release-art-tag span { display: inline-block; padding-left: 10px; border-left: 1px solid var(--uf-line); }
 
 /* Stylized appliance illustration */
 .release-art-stage {
@@ -670,25 +1146,20 @@ section { padding: var(--section-y) 0; }
 .release-art-screen {
   width: 100%;
   aspect-ratio: 2 / 1;
-  background: #0a0a0a;
+  background: var(--uf-blue-ink);
   border-radius: 6px;
-  border: 1px solid rgba(254,204,7,.18);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+  border: 1px solid var(--uf-line);
+  display: grid;
+  place-items: center;
   padding: 0 10px;
+  overflow: hidden;
 }
-.release-art-screen-bar {
-  height: 3px;
-  background: var(--gold);
-  border-radius: 2px;
-  opacity: .8;
+.release-art-screen-logo {
+  display: block;
+  color: #4d9aff;
+  filter: drop-shadow(0 0 8px rgba(0,111,255,.7));
 }
-.release-art-screen-bar:nth-child(2) {
-  width: 60%;
-  opacity: .5;
-}
+.release-art-screen-logo .unifi-logo { height: 16px; display: block; }
 .release-art-ports {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -710,8 +1181,8 @@ section { padding: var(--section-y) 0; }
   transform: translateY(-50%);
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 8px var(--gold);
+  background: var(--uf-blue);
+  box-shadow: 0 0 8px var(--uf-blue);
 }
 
 .release-feature-body { padding: 0 4px; }
@@ -723,7 +1194,7 @@ section { padding: var(--section-y) 0; }
   font-size: .72rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: var(--uf-blue);
   margin-bottom: 10px;
 }
 .release-title {
@@ -807,8 +1278,8 @@ section { padding: var(--section-y) 0; }
 .release-thumb {
   width: 52px; height: 52px;
   display: grid; place-items: center;
-  background: var(--ink);
-  color: var(--gold);
+  background: linear-gradient(135deg, var(--uf-bg-2), var(--uf-bg-1));
+  color: #4d9aff;
   border-radius: 12px;
   flex-shrink: 0;
   position: relative;
@@ -818,7 +1289,7 @@ section { padding: var(--section-y) 0; }
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 30%, rgba(254,204,7,.16), transparent 60%);
+  background: radial-gradient(circle at 30% 30%, rgba(0,111,255,.28), transparent 60%);
 }
 .release-thumb svg { position: relative; z-index: 1; }
 
@@ -940,21 +1411,45 @@ section { padding: var(--section-y) 0; }
   overflow: hidden;
 }
 .fit-card--primary {
-  background: linear-gradient(180deg, rgba(254,204,7,.10), rgba(254,204,7,.02));
-  border-color: rgba(254,204,7,.30);
+  background:
+    radial-gradient(480px 260px at 90% 0%, rgba(0,111,255,.22), transparent 60%),
+    linear-gradient(180deg, var(--uf-bg-2), var(--uf-bg-1));
+  border-color: rgba(0,111,255,.40);
 }
 .fit-card--primary::before {
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: var(--gold);
+  background: var(--uf-blue);
 }
 .fit-card-head {
   margin-bottom: 22px;
   padding-bottom: 18px;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
+.fit-card-head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.fit-card-head-top .fit-badge { margin-bottom: 0; }
+.unifi-mark--card {
+  height: 14px;
+  color: rgba(255,255,255,.9);
+  opacity: 1;
+}
+.fit-card--primary .unifi-mark--card { color: #4d9aff; }
 .fit-card--primary .fit-card-head {
-  border-color: rgba(254,204,7,.20);
+  border-color: rgba(0,111,255,.30);
+}
+.fit-card--primary .fit-badge {
+  background: var(--uf-blue);
+  color: #fff;
+}
+.fit-card--primary .fit-check {
+  background: var(--uf-blue);
+  color: #fff;
 }
 .fit-card h3 {
   color: #fff;
@@ -1725,6 +2220,47 @@ fieldset.form-row { border: 0; padding: 0; margin-inline: 0; }
   }
   .primary-nav a { display: block; padding: 12px 0; font-size: 1.05rem; }
   .primary-nav a.is-current::after { display: none; }
+  .primary-nav > ul > li { position: static; }
+
+  /* Dropdowns become tap-to-expand accordions */
+  .nav-item--dropdown > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .nav-dropdown {
+    position: static;
+    min-width: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: 0;
+    border-left: 2px solid rgba(254,204,7,.35);
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    margin: 0 0 4px 8px;
+    padding: 0 0 0 14px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+  .nav-dropdown::before { display: none; }
+  .nav-item--dropdown.is-open > .nav-dropdown { max-height: 480px; }
+  .nav-item--dropdown.is-open > a .nav-chevron { transform: rotate(180deg); opacity: 1; }
+  .nav-dropdown a {
+    padding: 10px 0;
+    white-space: normal;
+    font-size: .95rem;
+  }
+  .nav-dropdown a:hover { background: transparent; padding-left: 4px; }
+  .nav-dropdown .nav-dropdown-all {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
 
   .header-cta {
     flex-direction: column;

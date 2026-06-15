@@ -1,0 +1,34 @@
+<!-- ============================================================
+     CANONICAL PARTIAL: breadcrumbs
+     This block is COMMON to every page (sits directly below the
+     site-header, above the hero).
+
+     Per-page variation: the trail itself.
+       - Last item is the current page: plain text + aria-current.
+       - Every ancestor is a link.
+     Keep the page's BreadcrumbList JSON-LD in <head> in sync with
+     this trail (same items, same order).
+     ============================================================ -->
+
+<!-- Two-level example (top-level page) -->
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li aria-current="page">Contact</li>
+    </ol>
+  </div>
+</nav>
+
+<!-- Three-level example (sub-page) -->
+<!--
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/unifi/">UniFi</a></li>
+      <li aria-current="page">WiFi Access Points</li>
+    </ol>
+  </div>
+</nav>
+-->

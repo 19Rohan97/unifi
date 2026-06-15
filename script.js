@@ -22,6 +22,37 @@
     });
   }
 
+  /* -------- Nav dropdowns -------- */
+  // Mobile: first tap on a dropdown parent expands it; second tap follows the link.
+  document.querySelectorAll(".nav-item--dropdown > a").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      if (!window.matchMedia("(max-width: 720px)").matches) return;
+      var li = link.parentElement;
+      if (!li.classList.contains("is-open")) {
+        e.preventDefault();
+        e.stopPropagation(); // keep the mobile menu open while expanding
+        document.querySelectorAll(".nav-item--dropdown.is-open").forEach(function (other) {
+          if (other !== li) {
+            other.classList.remove("is-open");
+            other.querySelector("a").setAttribute("aria-expanded", "false");
+          }
+        });
+        li.classList.add("is-open");
+        link.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+  // Desktop: keep aria-expanded in sync with the CSS hover/focus state.
+  document.querySelectorAll(".nav-item--dropdown").forEach(function (li) {
+    var link = li.querySelector(":scope > a");
+    li.addEventListener("mouseenter", function () {
+      if (window.matchMedia("(min-width: 721px)").matches) link.setAttribute("aria-expanded", "true");
+    });
+    li.addEventListener("mouseleave", function () {
+      if (window.matchMedia("(min-width: 721px)").matches) link.setAttribute("aria-expanded", "false");
+    });
+  });
+
   /* -------- FAQ: close siblings when one opens (single-open accordion) -------- */
   var faqItems = document.querySelectorAll(".faq-item");
   faqItems.forEach(function (item) {
@@ -49,7 +80,7 @@
 
       // Collect data for demo logging
       var data = Object.fromEntries(new FormData(form).entries());
-      var interests = Array.from(form.querySelectorAll('input[name="interest"]:checked'))
+      var interests = Array.from(form.querySelectorAll('input[name="interest"]:checked, input[name="service"]:checked'))
         .map(function (el) { return el.value; });
       data.interests = interests;
 

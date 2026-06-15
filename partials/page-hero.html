@@ -1,0 +1,38 @@
+<!-- ============================================================
+     CANONICAL PARTIAL: page-hero
+     The standard interior-page hero. COMMON to every page except
+     hub/landing pages with bespoke heroes (e.g. /unifi/ uses its
+     own .hero with product art).
+
+     Slots (fill per page):
+       - eyebrow   : section label (short)
+       - title     : H1; wrap the key phrase in <span class="hl"> for
+                     the gold underline highlight
+       - lead      : 1–2 sentence standfirst (optional — delete <p>)
+       - visual    : framed photo, REAL and meaningful (a person, a
+                     job site, a rack build — no stock-y abstractions).
+                     Optional — delete the <figure> to omit; it also
+                     auto-hides under 860px.
+       - figcaption: optional gold caption chip on the photo
+
+     Modifier: add page-hero--compact for thin pages (legal, 404).
+
+     Pairing: if the next section opens with quick actions, place an
+     .action-bar--bridge as the FIRST child of that section's
+     .container — it overlaps this hero's bottom edge by design.
+     (See ACTION BAR in styles.css.)
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero__bg" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Eyebrow label</span>
+      <h1 class="page-hero__title">Page title with a <span class="hl">highlight</span>.</h1>
+      <p class="page-hero__lead">One or two sentences that set up the page. Keep it under 30 words.</p>
+    </div>
+    <figure class="page-hero__visual">
+      <img src="/path/to/real-photo.jpg" alt="Describe the photo" width="640" height="512" />
+      <figcaption class="page-hero__visual-tag">Optional caption</figcaption>
+    </figure>
+  </div>
+</section>
