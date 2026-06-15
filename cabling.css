@@ -123,11 +123,11 @@
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 380px;
+  min-height: 440px;
   /* per-type palette */
   --jacket: #b9bcc2;
   --jacket-glow: rgba(185,188,194,.35);
-  --shield-opacity: 0;
+  --shield-opacity: .18; /* Cat5e is UTP — faint ring as a reference for the Shield callout */
 }
 .cable-stage[data-cable="cat6"]  { --jacket: var(--gold);  --jacket-glow: rgba(254,204,7,.45);  --shield-opacity: .45; }
 .cable-stage[data-cable="cat6a"] { --jacket: #f5b800;      --jacket-glow: rgba(245,184,0,.5);   --shield-opacity: .8; }
@@ -148,9 +148,11 @@
   transform-style: preserve-3d;
   animation: cable-spin 14s linear infinite;
 }
+/* Gentle tilt so it reads as a cut cable viewed nearly head-on,
+   not a tilted coin. The slow Z-rotation shows the twist of the pairs. */
 @keyframes cable-spin {
-  from { transform: rotateX(58deg) rotateZ(0deg); }
-  to   { transform: rotateX(58deg) rotateZ(360deg); }
+  from { transform: rotateX(26deg) rotateZ(0deg); }
+  to   { transform: rotateX(26deg) rotateZ(360deg); }
 }
 
 /* Stacked slices form the tube */
@@ -212,21 +214,75 @@
 
 .cable-stage__label {
   position: absolute;
-  bottom: 8px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
+  margin: 0;
+  width: 100%;
+  text-align: center;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: .7rem;
-  letter-spacing: .18em;
+  font-weight: 800;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  color: #fff;
+}
+.cable-stage__label .cable-stage__name { color: var(--gold); }
+.cable-stage__label span {
+  display: block;
+  margin-top: 4px;
+  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .04em;
+  text-transform: none;
+  color: rgba(255,255,255,.55);
+}
+
+/* ---- Cross-section callouts ---- */
+.cable-key {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.cable-key__item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  /* --ox/--oy place the dot on the relevant ring; --a aims the line outward */
+  transform: translate(var(--ox), var(--oy)) rotate(var(--a));
+  transform-origin: left center;
+}
+.cable-key__dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(254,204,7,.16), 0 0 10px rgba(254,204,7,.5);
+  flex: none;
+}
+.cable-key__line {
+  width: 30px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--gold), rgba(255,255,255,.35));
+  flex: none;
+}
+.cable-key__txt {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .66rem;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.5);
+  color: rgba(255,255,255,.9);
   white-space: nowrap;
+  transform: rotate(calc(-1 * var(--a)));
+  transform-origin: left center;
 }
-.cable-stage__label em {
-  font-style: normal;
-  color: var(--gold);
-}
+/* Jacket → outer ring, top. Shield → mid ring, right. Pairs → inner conductors, bottom. */
+.cable-key__item--jacket { --ox: -4px; --oy: -116px; --a: -90deg; }
+.cable-key__item--shield { --ox: 104px; --oy: 0px;    --a: 0deg;  }
+.cable-key__item--pairs  { --ox: -4px; --oy: 58px;    --a: 90deg; }
 
 /* Detail panels */
 .cable-detail { position: relative; }
@@ -673,6 +729,11 @@
   .pair--2 { transform: rotate(135deg) translateY(calc(-1 * var(--r))); }
   .pair--3 { transform: rotate(225deg) translateY(calc(-1 * var(--r))); }
   .pair--4 { transform: rotate(315deg) translateY(calc(-1 * var(--r))); }
+  /* tighten callout anchors to the smaller mobile ring */
+  .cable-key__item--jacket { --ox: -4px; --oy: -92px; }
+  .cable-key__item--shield { --ox: 82px; --oy: 0px; }
+  .cable-key__item--pairs  { --ox: -4px; --oy: 46px; }
+  .cable-key__line { width: 22px; }
   .cable-feats { grid-template-columns: 1fr; }
   .meter { grid-template-columns: 100px 1fr; }
   .meter em { grid-column: 2; text-align: left; margin-top: 2px; }
